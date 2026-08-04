@@ -1,0 +1,2 @@
+[console_scripts]
+finger-remote = finger_remote_controller.demo:main
