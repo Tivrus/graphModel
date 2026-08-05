@@ -19,12 +19,11 @@ class Settings(BaseSettings):
     app_name: str = "GraphModel API"
     cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173,null,file://"
 
-    # OpenAI-совместимый провайдер (ключ только на сервере)
-    ai_endpoint: str = "https://openrouter.ai/api/v1/chat/completions"
-    ai_model: str = "openrouter/free"
-    ai_api_key: str = ""
-    ai_http_referer: str = "http://localhost:5173"
-    ai_app_title: str = "GraphModel"
+    # Qwen через web_ai_parser (браузерный клиент)
+    qwen_email: str = ""
+    qwen_password: str = ""
+    qwen_headless: bool = False
+    qwen_timeout: int = 120
 
     @property
     def cors_origin_list(self) -> list[str]:
@@ -32,7 +31,7 @@ class Settings(BaseSettings):
 
     @property
     def ai_configured(self) -> bool:
-        return bool(self.ai_api_key.strip() and self.ai_endpoint.strip() and self.ai_model.strip())
+        return bool(self.qwen_email.strip() and self.qwen_password.strip())
 
 
 @lru_cache
